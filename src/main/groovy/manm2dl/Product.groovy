@@ -11,6 +11,15 @@ class Product {
     Float price
     List<Option> optionList = []
 
+    List<Option> optionListOrderedByName() {
+        optionList.sort { it.name }
+    }
+
+    List<Option> optionListOrderedByPrice() {
+        optionList.sort { it.price }
+    }
+
+
 }
 
 
