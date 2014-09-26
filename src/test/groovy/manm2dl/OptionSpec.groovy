@@ -1,6 +1,7 @@
 package manm2dl
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * Created by franck on 26/09/2014.
@@ -8,20 +9,32 @@ import spock.lang.Specification
 class OptionSpec extends Specification{
 
 
-    def "test le retour de la methode toString"() {
-        given: "une option"
-        Option option = new Option(name: aName, price: aPrice)
+    @Unroll
+    def "test de la methode to string"() {
 
-        when: "toString est invoquée"
+        given: "une option"
+        def option = new Option(name: aName, price: aPrice)
+
+        when: "quand on invoque toString sur l'option"
         def res = option.toString()
 
-        then: "le resultat de toString fait apparaitre le prix et le nom"
-        res.contains(aName)
-        res.contains(aPrice.toString())
+        then: "le resultat contient le nom et le prix de l'option"
+        def name = option.name
+        if (name == null) {
+            name = 'null'
+        }
+        res.contains(name)
+        res.contains(option.price?.toString() ?: 'null')
 
         where:
-        aName | aPrice
-        "opt1"| 12.5
+        aName  | aPrice
+        "opt1" | 12.3
+        ""     | 12.3
+        "opt1" | -12.5
+        null   | 12.4
+        "opt1" | null
+
+
     }
 
 }
