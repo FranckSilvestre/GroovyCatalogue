@@ -10,4 +10,8 @@ class Option {
     String name
     Float price
 
+    String toString() {
+        "$name ($price)"
+    }
+
 }
