@@ -38,9 +38,9 @@ class ProductSpec extends Specification{
     def "test recuperation des options ordonnees par prix"() {
 
         given:"une liste d'options non ordonnée"
-        produit.optionList[0].getPrice() >> "8"
-        produit.optionList[1].getPrice() >> "12"
-        produit.optionList[2].getPrice() >> "4"
+        produit.optionList[0].getPrice() >> 8
+        produit.optionList[1].getPrice() >> 12
+        produit.optionList[2].getPrice() >> 4
 
         when:" la liste ordonnée par nom est renvoyée"
         def res = produit.optionListOrderedByPrice()
