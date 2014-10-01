@@ -9,6 +9,25 @@ class Catalogue {
     // 2. ecrire une methode qui permet de recuperer le nombre d'exemplaire d'un produit dans le catalogue
 
     String name
-    Map<Product,Integer> productMap = [:]
+    Map<Product, Integer> productMap = [:]
+
+    /**
+     * Ajoute un produit au catalogue
+     * @param product le produit à ajouter
+     * @param nbItems la quantité
+     */
+    def addProduct(Product product, Integer nbItems = 1) {
+        def productCount = productMap.get(product) ?: 0
+        productMap.put(product, productCount + nbItems)
+    }
+
+    /**
+     * Récupère le nombre d'exemplaires d'un produit dans le catalogue
+     * @param product
+     * @return
+     */
+    Integer getProductCount(Product product) {
+        productMap.get(product) ?: 0
+    }
 
 }
