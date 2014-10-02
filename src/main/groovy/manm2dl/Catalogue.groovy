@@ -17,8 +17,8 @@ class Catalogue {
      * @param nbItems la quantité
      */
     def addProduct(Product product, Integer nbItems = 1) {
-        def productCount = productMap.get(product) ?: 0
-        productMap.put(product, productCount + nbItems)
+        def productCount = productMap[product] ?: 0
+        productMap[product] = productCount + nbItems
     }
 
     /**
@@ -27,7 +27,7 @@ class Catalogue {
      * @return
      */
     Integer getProductCount(Product product) {
-        productMap.get(product) ?: 0
+        productMap[product] ?: 0
     }
 
 }

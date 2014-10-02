@@ -23,7 +23,7 @@ class CatalogueSpec extends Specification {
     def "test de la récupération du nbre  d'exemplaires d'un produit"() {
 
         given: "un catalogue contenant un certains nombre de produits"
-        catalogue.productMap.put(p1, nb1)
+        catalogue.productMap[p1] = nb1
 
         when: "on recupere le nombre d'exemplaires d'un produit dans le catalogue"
         def count = catalogue.getProductCount(p1)
@@ -39,11 +39,24 @@ class CatalogueSpec extends Specification {
 
     }
 
+    def "test de la récupération du nbre  d'exemplaires catalogue vide"() {
+
+        given: "un catalogue vide"
+        catalogue
+
+        when: "on recupere le nombre d'exemplaires d'un produit dans le catalogue"
+        def count = catalogue.getProductCount(p1)
+
+        then: "le nombre d'exemplaires est correct"
+        count == 0
+
+    }
+
     @Unroll
     def "test de l'ajout d'exemplaires d'un produit"() {
 
         given: "un catalogue "
-        catalogue.productMap.put(p1, nb1)
+        catalogue.productMap[p1] = nb1
 
         when: "on ajoute des exemplaires d'un produit existant dans le catalogue"
         catalogue.addProduct(p1, nb2)
